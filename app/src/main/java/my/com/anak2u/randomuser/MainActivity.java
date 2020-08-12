@@ -14,6 +14,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class MainActivity extends AppCompatActivity {
 TextView nameTextView, emailTextView, addressTextView, phoneTextView, dobTextView;
 ImageView imageView;
@@ -41,7 +45,20 @@ ImageView imageView;
                     @Override
                     public void onResponse(String response) {
                         // Display the first 500 characters of the response string.
-                        nameTextView.setText("Response is: "+ response.substring(0,500));
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            JSONArray resultsArray = jsonObject.getJSONArray("results");
+                            JSONObject userObject = resultsArray.getJSONObject(0);
+                            JSONObject  nameObject = userObject.getJSONObject("name");
+                            String firstName = nameObject.getString("first");
+                            // title  + firstName + lastName
+                            nameTextView.setText(firstName);
+
+                            //We will do imageView together tomorrow Or you can try read the documentation:
+                            // Glide
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
