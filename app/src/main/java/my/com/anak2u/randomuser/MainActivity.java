@@ -51,8 +51,22 @@ ImageView imageView;
                             JSONObject userObject = resultsArray.getJSONObject(0);
                             JSONObject  nameObject = userObject.getJSONObject("name");
                             String firstName = nameObject.getString("first");
+                            String title = nameObject.getString("title");
+                            String lastName = nameObject.getString("last");
+
                             // title  + firstName + lastName
-                            nameTextView.setText(firstName);
+                            nameTextView.setText(title +" "+firstName+" "+lastName);
+
+                            String email = userObject.getString("email");
+
+                            emailTextView.setText(email);
+
+                            String dob = userObject.getJSONObject("dob").getString("date");
+                            dobTextView.setText(dob);
+
+                            String phone = userObject.getString("phone");
+                            phoneTextView.setText(phone);
+
 
                             //We will do imageView together tomorrow Or you can try read the documentation:
                             // Glide
