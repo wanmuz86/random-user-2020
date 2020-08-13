@@ -13,6 +13,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -82,6 +83,8 @@ ImageView imageView;
 
                             //We will do imageView together tomorrow Or you can try read the documentation:
                             // Glide
+                            String imageUrl = userObject.getJSONObject("picture").getString("large");
+                            Glide.with(MainActivity.this).load(imageUrl).into(imageView);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
