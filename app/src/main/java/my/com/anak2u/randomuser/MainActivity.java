@@ -67,6 +67,18 @@ ImageView imageView;
                             String phone = userObject.getString("phone");
                             phoneTextView.setText(phone);
 
+                            JSONObject addressObject = userObject.getJSONObject("location");
+                            JSONObject streetObject = addressObject.getJSONObject("street");
+                            Integer number = streetObject.getInt("number");
+                            String streetName = streetObject.getString("name");
+                            String city = addressObject.getString("city");
+                            String state = addressObject.getString("state");
+                            String country = addressObject.getString("country");
+                            String postcode = addressObject.getString("postcode");
+
+                            addressTextView.setText(number + " "+streetName+" "+city+" "+state+" " +
+                                    ""+postcode+" "+country );
+
 
                             //We will do imageView together tomorrow Or you can try read the documentation:
                             // Glide
